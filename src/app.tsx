@@ -35,3 +35,63 @@ const Container = styled.div`
     max-width: 600px;
   }
 `;
+
+const BallContainer = styled.div<BallProp>`
+  position: absolute;
+  width: 80%;
+  height: 80%;
+
+  &.centerBall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  transform: rotate(${({ rotate }: BallProp) => `-${rotate}deg`});
+  transition: transform 0.7s linear;
+`;
+
+const Ball = styled.div<BallProp>`
+  border-radius: 50%;
+  width: 25%;
+  height: 25%;
+  margin: 0 auto;
+
+  .content {
+    transform: rotate(${({ rotate }: BallProp) => `${rotate}deg`});
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: inherit;
+
+    img {
+      width: 100%;
+      border-radius: inherit;
+      height: 100%;
+    }
+
+    p {
+      position: absolute;
+      bottom: -25px;
+      font-style: 1.3rem;
+      width: max-content;
+      padding: 0px 30px;
+    }
+  }
+
+  .content.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 40%;
+      width: 40%;
+    }
+  }
+`;
