@@ -1,3 +1,40 @@
+import { useState } from "react";
+import styled from "styled-components";
+import watchers from "./data";
+import PlusIcon from "./assets/plus-icon.png";
+
+type BallProp = {
+  rotate: number;
+};
+
+function App() {
+  const [max_watchers] = useState(9);
+  const [watcher, setWatcher] = useState(0);
+
+  const handleAddProfile = () => {
+    setWatcher(watcher + 1);
+  };
+
+  function handleWatcher(watcher = 0) {
+    let watcherArray = [...watchers.slice(0, watcher)];
+
+    if (watcherArray.length < max_watchers) {
+      watcherArray = [
+        ...watcherArray,
+        {
+          image: PlusIcon,
+          id: "addIcon",
+          name: "Add profile",
+          addProfile: true,
+        },
+      ];
+    }
+    const deg = 360 / watcherArray.length;
+
+    return { watcherArray, deg };
+  }
+}
+
 const Wrapper = styled.div`
   color: white;
   max-width: 1200px;
