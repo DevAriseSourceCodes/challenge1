@@ -95,3 +95,11 @@ const Ball = styled.div<BallProp>`
     }
   }
 `;
+
+const BallBtn = styled(Ball)`
+  border: 2px solid white;
+  .content {
+    cursor: pointer;
+    background-color: transparent;
+  }
+`;
