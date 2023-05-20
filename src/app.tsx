@@ -33,7 +33,46 @@ function App() {
 
     return { watcherArray, deg };
   }
+  const { watcherArray, deg } = handleWatcher(watcher);
+
+  return (
+    <Wrapper>
+      <h1>Who's watching</h1>
+      <Container>
+        {watcherArray.map((watcher: Watcher, index: number) => {
+          return (
+            <BallContainer
+              className={watcherArray.length === 1 ? "centerBall" : ""}
+              key={index}
+              rotate={deg * index}
+            >
+              {watcher.addProfile ? (
+                <BallBtn rotate={deg * index}>
+                  <button
+                    onClick={handleAddProfile}
+                    className="content profile"
+                  >
+                    <img src={watcher.image} alt={watcher.name} />
+                    <p>{watcher.name}</p>
+                  </button>
+                </BallBtn>
+              ) : (
+                <Ball rotate={deg * index}>
+                  <div className="content">
+                    <img src={watcher.image} alt={watcher.name} />
+                    <p>{watcher.name}</p>
+                  </div>
+                </Ball>
+              )}
+            </BallContainer>
+          );
+        })}
+      </Container>
+    </Wrapper>
+  );
 }
+
+export default App;
 
 const Wrapper = styled.div`
   color: white;
